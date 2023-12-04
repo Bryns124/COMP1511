@@ -1,0 +1,30 @@
+// Reads characters from its input and writes the same 
+// characters to its output, except it does not write 
+// lower case vowels ('a', 'e', 'i', 'o', 'u').
+// by Bryan Le (z5361001)
+// 01/04/2021
+
+#include <stdio.h>
+
+int is_vowel(int i);
+
+int main(void) {
+
+    int i = getchar();
+    while (i != EOF) {
+        if (is_vowel(i) == 0) {
+            putchar(i);
+        }
+        i = getchar();
+    }
+    return 0;
+}
+
+int is_vowel(int i) {
+    if (i == 'a' || i == 'e' || i == 'i' || i == 'o' || i == 'u') {
+        return 1;
+    } 
+    else {
+        return 0; 
+    } 
+}

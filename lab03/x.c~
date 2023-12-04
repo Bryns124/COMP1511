@@ -1,0 +1,39 @@
+// Drawing an X of any size
+// By Bryan Le (bryan.le1248@gmail.com)
+// 07/03/2021
+
+
+#include <stdio.h>
+
+int main(void) {
+
+    int size;
+    int x = 0;
+    int y = 0;
+    
+    printf("Enter size: ");
+    scanf("%d", &size);
+
+    while (x < size) {
+        y = 0;
+        while (y < size) {
+            if (y == x || x == (size - 1) - y) {
+            printf("*");
+            }
+            else {
+            printf(" ");
+            }
+            y++;
+        }
+        printf("\n");
+        x++;
+    }
+    
+    return 0;
+}
+    
+            
+            
+        
+    
+    

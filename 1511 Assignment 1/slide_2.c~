@@ -1,0 +1,155 @@
+    //make temporary array completely empty then input rotated values into the
+    //temp array then replace main array with temporary array.
+    
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+
+#define SIZE 15
+#define EMPTY 0
+#define STONE 1
+
+void print_map(int map[SIZE][SIZE], int laser_y);
+
+int main (void) {
+
+    int map[SIZE][SIZE] = {EMPTY};
+    int laser_y = SIZE / 2;
+//    int x_centre;
+//    int y_centre;
+//    int x_coordinate = 0;
+//    int y_coordinate = 0;
+//    double distance_from_centre(int x_centre, int x_coordinate, int y_centre, int y_coordinate);
+
+
+    int num_blocks;
+    
+    int input_digits1;
+    int input_digits2;
+    int value;
+    
+    printf("How many blocks? ");
+    scanf("%d", &num_blocks);       
+        
+    int block = 0;
+    printf("Enter blocks: \n");
+    while (block < num_blocks) {
+        scanf("%d %d %d", &input_digits1, &input_digits2, &value);
+        if (input_digits1 >= 0 && input_digits1 <= 14 && input_digits2 >= 0 && input_digits2 <= 14) {
+            map[input_digits1][input_digits2] = (STONE);
+        }
+        if (input_digits1 >= 0 && input_digits1 <= 14 && input_digits2 >= 0 && input_digits2 <= 14 && value >= 4 && value <= 9) {
+            map[input_digits1][input_digits2] = (value);
+        }
+        block++; 
+    }
+    print_map(map, laser_y);
+
+    int input_num1;
+    int input_num2;
+    while (scanf("%d", &input_num1) == 1) {
+        if (input_num1 == 1) {
+            scanf("%d", &input_num2);
+            if (input_num2 == -1) {
+                laser_y--;
+                if (laser_y <= 0) {
+                    laser_y = 0;
+                }
+            }
+            if (input_num2 == 1) {
+                laser_y++;
+                if (laser_y >= SIZE - 1) {
+                    laser_y = SIZE - 1;
+                }
+            }
+        }
+
+    if (input_num1 == 4) {
+    int a = 0;
+    int b = 0;
+    int c = 0;
+    int array_map_rotated[SIZE][SIZE] = {EMPTY};
+        scanf("%d", &input_num2);
+        //turning clockwise 90º
+        if (input_num2 == 1) {
+             if (c < 1) {
+             a = 0;
+                while (a < SIZE && c == 0) {
+                b = 0;
+                    while (b < SIZE && c == 0) {
+                        if (map[a][b] == (STONE)) {
+                            array_map_rotated[b][SIZE - 1 - a] = (STONE);
+                        }
+                        if (map[a][b] == (EMPTY)) {
+                            array_map_rotated[b][SIZE - 1 - a] = (EMPTY);
+                        }
+                        b++;
+                    }
+                    a++;
+                }
+         //places the co-ords of the temporary array into the original array.
+            a = 0;
+                while (a < SIZE) {
+                b = 0;
+                    while (b < SIZE) {
+                        map[a][b] = array_map_rotated[a][b];
+                        b++;
+                    }
+                    a++;
+                }
+        c++;
+        }
+        }
+            //turning anti-clockwise 90º
+        if (input_num2 == 2) {
+            if (c < 1) {
+            a = 0;
+                while (a < SIZE) {
+                b = 0;
+                    while (b < SIZE) {
+                        if (map[a][b] == (STONE)) {
+                            array_map_rotated[SIZE - 1 - b][a] = (STONE);
+                        }
+                        if (map[a][b] == (EMPTY)) {
+                            array_map_rotated[SIZE - 1 - b][a] = (EMPTY);
+                        }
+                        b++;
+                    }
+                    a++;
+                }
+            a = 0;
+                while (a < SIZE) {
+                b = 0;
+                    while (b < SIZE) {
+                        map[a][b] = array_map_rotated[a][b];
+                    b++;
+                    }
+                a++;
+                }
+        c++;
+        }
+    }
+    }
+
+    print_map(map, laser_y);
+    }
+    return 0;
+}
+
+void print_map(int map[SIZE][SIZE], int laser_y) {
+    int i = 0;
+    while (i < SIZE) {
+        if (i == laser_y) {
+            printf("> ");
+        } else {
+            printf("  ");
+        }
+        int j = 0;
+        while (j < SIZE) {
+            printf("%d ", map[i][j]);
+            j++;
+        }
+        printf("\n");
+        i++;
+    }
+}

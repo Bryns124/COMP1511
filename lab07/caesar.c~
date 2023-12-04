@@ -1,0 +1,54 @@
+// A Caesar cipher shifts each letter a certain number of positions in the alphabet.
+// By Bryan Le (z5361001)
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int encrypt(int character1, int move);
+
+int main(int argc, char *argv[]) {
+    int character1 = getchar();
+    int move = atoi(argv[1]);
+    while (character1 != -1) {
+        character1 = encrypt(character1, move);
+        putchar(character1);
+        character1 = getchar();
+    }
+    return 0;
+}
+
+int encrypt(int character1, int move) {
+    int character2 = character1;
+    if (character1 >= 'A' && character1 <= 'Z') {
+        if (character1 + (move % 26) > 'Z') {
+            character1 = character1 + (move % 26) - 26;
+            return character1;
+        }
+        if (character1 + (move % 26) < 'A') {
+            character1 = character1 + (move % 26) + 26;
+            return character1;
+        }
+        else {
+            character1 = character1 + (move % 26);
+            return character1;
+        }
+    }
+    if (character2 >= 'a' && character2 <= 'z') {
+        if (character2 + (move % 26) > 'z') {
+            character2 = character2 + (move % 26) - 26;
+            return character2;
+        }
+        if (character2 + (move % 26) < 'a') {
+            character2 = character2 + (move % 26) + 26;
+            return character2;
+        }
+        else { 
+            character2 = character2 + (move % 26);
+            return character2;
+        }
+    }
+    else {
+        return character1;
+    } 
+}

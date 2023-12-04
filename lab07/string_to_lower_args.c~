@@ -1,0 +1,23 @@
+//Reads command line arguments then prints them out.
+// When it prints out, it will convert all upper case letters to lower case.
+// Written by Bryan Le (z5361001)
+// On 01/04/2021
+
+#include <stdio.h>
+
+int main(int argc, char *argv[]) {
+    int x = 1;
+    while (x < argc) {
+        int y = 0;
+        while (argv[x][y] != '\0') {
+            if (argv[x][y] >= 'A' && argv[x][y] <= 'Z') {
+                argv[x][y] = argv[x][y] + 32;
+            }
+            putchar(argv[x][y]);
+            y++;
+        }
+        printf(" ");
+        x++;
+    }
+    printf("\n");
+}
